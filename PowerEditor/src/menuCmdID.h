@@ -165,6 +165,7 @@
     #define    IDM_EDIT_FULLPATHTOCLIP              (IDM_EDIT + 29)
     #define    IDM_EDIT_FILENAMETOCLIP              (IDM_EDIT + 30)
     #define    IDM_EDIT_CURRENTDIRTOCLIP            (IDM_EDIT + 31)
+    #define    IDM_EDIT_MARKEDCLIP                  (IDM_EDIT + 78)
 
 // Menu macro
     #define    IDM_MACRO_RUNMULTIMACRODLG           (IDM_EDIT + 32)

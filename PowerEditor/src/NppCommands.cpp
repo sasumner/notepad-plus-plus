@@ -972,6 +972,38 @@ void Notepad_plus::command(int id)
 		}
 		break;
 
+		case IDM_EDIT_MARKEDCLIP :
+		{
+			generic_string accumMarkedText = TEXT("");
+			auto pos = (_pEditView)->execute(SCI_INDICATOREND, SCE_UNIVERSAL_FOUND_STYLE, 0);
+			if (pos > 0)
+			{
+				bool atEndOfIndic = (_pEditView)->execute(SCI_INDICATORVALUEAT, SCE_UNIVERSAL_FOUND_STYLE, 0) != 0;
+				auto prevPos = pos;
+				if (atEndOfIndic)
+				{
+					prevPos = 0;
+				}
+				do
+				{
+					if (atEndOfIndic)
+					{
+						if (accumMarkedText.length() > 0)
+						{
+							accumMarkedText += TEXT("\r\n");
+						}
+						accumMarkedText += (_pEditView)->getGenericTextAsString(prevPos, pos);
+					}
+					atEndOfIndic = !atEndOfIndic;
+					prevPos = pos;
+					pos = (_pEditView)->execute(SCI_INDICATOREND, SCE_UNIVERSAL_FOUND_STYLE, pos);
+				}
+				while (pos != prevPos);
+			}
+			str2Cliboard(accumMarkedText);
+		}
+		break;
+
 		case IDM_SEARCH_FIND :
 		case IDM_SEARCH_REPLACE :
 		case IDM_SEARCH_MARK :
@@ -3420,6 +3452,7 @@ void Notepad_plus::command(int id)
 			case IDM_EDIT_FULLPATHTOCLIP :
 			case IDM_EDIT_FILENAMETOCLIP :
 			case IDM_EDIT_CURRENTDIRTOCLIP :
+			case IDM_EDIT_MARKEDCLIP :
 			case IDM_EDIT_CLEARREADONLY :
 			case IDM_EDIT_RTL :
 			case IDM_EDIT_LTR :
