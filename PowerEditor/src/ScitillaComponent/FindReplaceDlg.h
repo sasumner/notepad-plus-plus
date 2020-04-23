@@ -7,10 +7,10 @@
 // version 2 of the License, or (at your option) any later version.
 //
 // Note that the GPL places important restrictions on "derived works", yet
-// it does not provide a detailed definition of that term.  To avoid      
-// misunderstandings, we consider an application to constitute a          
+// it does not provide a detailed definition of that term.  To avoid
+// misunderstandings, we consider an application to constitute a
 // "derivative work" for the purpose of this license if it does any of the
-// following:                                                             
+// following:
 // 1. Integrates source code from Notepad++.
 // 2. Integrates/includes/aggregates Notepad++ into a proprietary executable
 //    installer, such as those produced by InstallShield.
@@ -215,7 +215,7 @@ public:
 private:
 	Finder  *_pFinder2Search = nullptr;
 	FindOption _options;
-	
+
 	virtual INT_PTR CALLBACK run_dlgProc(UINT message, WPARAM wParam, LPARAM lParam);
 	void initFromOptions();
 	void writeOptions();
@@ -243,7 +243,7 @@ public :
 	};
 
 	virtual void create(int dialogID, bool isRTL = false, bool msgDestParent = true);
-	
+
 	void initOptionsFromDlg();
 
 	void doDialog(DIALOG_TYPE whichType, bool isRTL = false, bool toShow = true);
@@ -252,7 +252,7 @@ public :
 
 	int markAll(const TCHAR *txt2find, int styleID, bool isWholeWordSelected);
 	int markAllInc(const FindOption *opt);
-	
+
 
 	int processAll(ProcessOperation op, const FindOption *opt, bool isEntire = false, const FindersInfo *pFindersInfo = nullptr, int colourStyleID = -1);
 	int processRange(ProcessOperation op, FindReplaceInfo & findReplaceInfo, const FindersInfo *pFindersInfo, const FindOption *opt = nullptr, int colourStyleID = -1, ScintillaEditView *view2Process = nullptr);
@@ -309,7 +309,7 @@ public :
 
 	void focusOnFinder() {
 		// Show finder and set focus
-		if (_pFinder) 
+		if (_pFinder)
 		{
 			::SendMessage(_hParent, NPPM_DMMSHOW, 0, reinterpret_cast<LPARAM>(_pFinder->getHSelf()));
 			_pFinder->_scintView.getFocus();
@@ -394,7 +394,7 @@ private :
 		if (currentIndex != _currentStatus)
 			_tab.activateAt(_currentStatus);
 	};
-	
+
 	FindStatus getFindStatus() {
 		return this->_statusbarFindStatus;
 	}
@@ -410,6 +410,7 @@ private :
 	static const int FR_OP_GLOBAL = 8;
 	void saveInMacro(size_t cmd, int cmdType);
 	void drawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
+	bool replaceInFilesConfirmCheck(generic_string directory, generic_string fileTypes);
 
 };
 
@@ -427,7 +428,7 @@ public :
 	};
 
 	void setFindStatus(FindStatus iStatus, int nbCounted);
-	
+
 	FindStatus getFindStatus() {
 		return _findStatus;
 	}

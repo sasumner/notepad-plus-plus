@@ -439,7 +439,7 @@
                 <Item id="1934" name="Copy to Clipboard"/>
                 <Item id="2"    name="Close"/>
             </MD5FromTextDlg>
-            
+
             <SHA256FromFilesDlg title="Generate SHA-256 digest from files">
                 <Item id="1922" name="Choose files to generate SHA-256..."/>
                 <Item id="1924" name="Copy to Clipboard"/>
@@ -451,7 +451,7 @@
                 <Item id="1934" name="Copy to Clipboard"/>
                 <Item id="2"    name="Close"/>
             </SHA256FromTextDlg>
-            
+
             <PluginsAdminDlg title="Plugins Admin" titleAvailable = "Available" titleUpdates = "Updates" titleInstalled = "Installed">
                 <ColumnPlugin   name="Plugin"/>
                 <ColumnVersion  name="Version"/>
@@ -996,7 +996,7 @@ You can define several column markers by using white space to separate the diffe
                 <Item id="1718" name="E&amp;xtended (\n, \r, \t, \0, \x...)"/>
                 <Item id="1720" name="&amp;. matches newline"/>
             </FindInFinder>
-            <DoSaveOrNot title="Save"> 
+            <DoSaveOrNot title="Save">
                 <Item id="1761" name="Save file &quot;$STR_REPLACE$&quot; ?"/>
                 <Item id="6" name="&amp;Yes"/>
                 <Item id="7" name="&amp;No"/>
@@ -1265,6 +1265,9 @@ Find in all files except exe, obj &amp;&amp; log:
             <summary-nbsel1 value=" selected characters ("/>
             <summary-nbsel2 value=" bytes) in "/>
             <summary-nbrange value=" ranges"/>
+            <replace-in-files-confirm-title value="Are you sure?"/>
+            <replace-in-files-confirm-directory value="Are you sure you want to replace all occurrences in :"/>
+            <replace-in-files-confirm-filetype value="For file type :"/>
         </MiscStrings>
     </Native-Langue>
 </NotepadPlus>
