@@ -3598,30 +3598,17 @@ void ScintillaEditView::sortLines(size_t fromLine, size_t toLine, ISorter *pSort
 
 	const auto startPos = execute(SCI_POSITIONFROMLINE, fromLine);
 	const auto endPos = execute(SCI_POSITIONFROMLINE, toLine) + execute(SCI_LINELENGTH, toLine);
-	const generic_string text = getGenericTextAsString(startPos, endPos);
-	std::vector<generic_string> splitText = stringSplit(text, getEOLString());
-	const size_t lineCount = execute(SCI_GETLINECOUNT);
-	const bool sortEntireDocument = toLine == lineCount - 1;
-	if (!sortEntireDocument)
+	generic_string text = getGenericTextAsString(startPos, endPos);
+	if (!stringEndsWith(text, TEXT("\n")) && !stringEndsWith(text, TEXT("\r")))
 	{
-		if (splitText.rbegin()->empty())
-		{
-			splitText.pop_back();
-		}
+		// if the last of the lines to be sorted does not have a line-ending,
+		// it needs one in case the line moves during the sort
+		text += getEOLString();
 	}
-	assert(toLine - fromLine + 1 == splitText.size());
+	std::vector<generic_string> splitText = stringSplitIntoLinesKeepingEndings(text);
 	const std::vector<generic_string> sortedText = pSort->sort(splitText);
-	const generic_string joined = stringJoin(sortedText, getEOLString());
-	if (sortEntireDocument)
-	{
-		assert(joined.length() == text.length());
-		replaceTarget(joined.c_str(), int(startPos), int(endPos));
-	}
-	else
-	{
-		assert(joined.length() + getEOLString().length() == text.length());
-		replaceTarget((joined + getEOLString()).c_str(), int(startPos), int(endPos));
-	}
+	const generic_string joined = stringJoin(sortedText, TEXT(""));
+	replaceTarget(joined.c_str(), int(startPos), int(endPos));
 }
 
 bool ScintillaEditView::isTextDirectionRTL() const
