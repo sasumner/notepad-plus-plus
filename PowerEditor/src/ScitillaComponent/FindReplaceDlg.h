@@ -386,6 +386,8 @@ private :
 
 	HFONT _hMonospaceFont = nullptr;
 
+	void showAndEnableDlgCtrl(int dlgCtrl, bool isShowEnable);
+
 	void enableReplaceFunc(bool isEnable);
 	void enableFindInFilesControls(bool isEnable = true);
 	void enableFindInFilesFunc();
